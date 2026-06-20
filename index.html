@@ -9,6 +9,23 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+
+    <!-- Meta Pixel Code — REPLACE '2659082657821976' WITH YOUR ACTUAL PIXEL ID -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '2659082657821976');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=2659082657821976&ev=PageView&noscript=1"/></noscript>
+    <!-- End Meta Pixel Code -->
 </head>
 <body>
 
@@ -23,7 +40,7 @@
                 <a href="#founder">Story</a>
                 <a href="#services">Services</a>
                 <a href="#pricing">Pricing</a>
-                <a href="https://forms.gle/MNntNhFyDYdtLobb8" target="_blank" class="nav-cta">Apply for Audit</a>
+                <a href="#apply" class="nav-cta">Apply for Audit</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
                 <span></span>
@@ -64,7 +81,7 @@
                     <span class="stat-label">Max Clients</span>
                 </div>
             </div>
-            <a href="https://forms.gle/MNntNhFyDYdtLobb8" target="_blank" class="btn btn-primary">Apply for a Free Audit</a>
+            <a href="#apply" class="btn btn-primary">Apply for a Free Audit</a>
         </div>
     </section>
 
@@ -311,13 +328,63 @@
         </div>
     </section>
 
-    <!-- CTA -->
-    <section class="cta" id="cta">
+    <!-- Apply Form -->
+    <section class="apply" id="apply">
         <div class="container">
-            <h2 class="cta-title">3 Spots. 1 Founder.<br><span class="text-silver">Apply for Your Free Audit.</span></h2>
-            <p class="cta-sub">30-minute screen-share. I open your Ads Manager and show you what's broken — whether we work together or not.</p>
-            <a href="https://forms.gle/MNntNhFyDYdtLobb8" target="_blank" class="btn btn-primary btn-large" id="form-link">Apply Now — Free Audit</a>
-            <div class="cta-steps">
+            <p class="section-tag">Apply</p>
+            <h2 class="section-title">Apply for a<br><span class="text-silver">Free Audit</span></h2>
+            <p class="apply-sub">I personally review every application. If there's a fit, I'll pull your data, prepare a proper audit report, and walk you through it. No pitch. Limited to 3 brands at a time.</p>
+
+            <form class="apply-form" id="apply-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="form-name">Your name <span class="required">*</span></label>
+                        <input type="text" id="form-name" name="name" required placeholder="Your name">
+                    </div>
+                    <div class="form-group">
+                        <label for="form-brand">Brand name <span class="required">*</span></label>
+                        <input type="text" id="form-brand" name="brand" required placeholder="Your brand name">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="form-website">Brand Website URL <span class="required">*</span></label>
+                        <input type="url" id="form-website" name="website" required placeholder="https://yourbrand.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="form-spend">Monthly Meta ad spend <span class="required">*</span></label>
+                        <select id="form-spend" name="spend" required>
+                            <option value="" disabled selected>Choose</option>
+                            <option value="Not spending yet">Not spending yet</option>
+                            <option value="Under ₹1L/month">Under ₹1L/month</option>
+                            <option value="₹1L – ₹5L/month">₹1L – ₹5L/month</option>
+                            <option value="₹5L – ₹10L/month">₹5L – ₹10L/month</option>
+                            <option value="₹10L – ₹25L/month">₹10L – ₹25L/month</option>
+                            <option value="₹25L – ₹50L/month">₹25L – ₹50L/month</option>
+                            <option value="Above ₹50L/month">Above ₹50L/month</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group form-full">
+                    <label for="form-challenge">Biggest challenge with your Meta ads right now? <span class="required">*</span></label>
+                    <textarea id="form-challenge" name="challenge" required rows="3" placeholder="What's not working? What have you tried?"></textarea>
+                </div>
+                <div class="form-group form-half">
+                    <label for="form-whatsapp">WhatsApp number <span class="required">*</span></label>
+                    <input type="tel" id="form-whatsapp" name="whatsapp" required placeholder="+91 99100 00000">
+                </div>
+                <button type="submit" class="btn btn-primary btn-large form-submit" id="form-submit">Submit Application</button>
+            </form>
+
+            <div class="form-success" id="form-success" style="display: none;">
+                <div class="success-icon">
+                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="24" r="20"/><path d="M16 24l6 6 10-10"/></svg>
+                </div>
+                <h3>Application Received</h3>
+                <p>I'll review your details and reach out on WhatsApp within 48 hours.</p>
+            </div>
+
+            <div class="apply-steps">
                 <div class="cta-step">
                     <span class="cta-step-num">1</span>
                     <span>You fill out the form</span>

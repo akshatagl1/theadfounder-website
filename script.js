@@ -57,9 +57,10 @@ const singles = [
     '.pricing-table-wrap',
     '.pricing-sub',
     '.pricing-includes',
-    '.cta-title',
-    '.cta-sub',
-    '.cta-steps'
+    '.apply-sub',
+    '.apply-form',
+    '.form-success',
+    '.apply-steps'
 ];
 
 document.querySelectorAll(singles.join(',')).forEach(el => {
@@ -178,6 +179,53 @@ const connectorObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.3 });
 
 connectors.forEach(c => connectorObserver.observe(c));
+
+// === FORM SUBMISSION ===
+const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbzyvXnuUKKnW3g5T7Nb5VkQeSPLoX6yKrHgnLq2IuBHa98ecxaU5GKg2ppVfdPrSnUMww/exec';
+
+const applyForm = document.getElementById('apply-form');
+const formSuccess = document.getElementById('form-success');
+const formSubmit = document.getElementById('form-submit');
+
+if (applyForm) {
+    applyForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        formSubmit.disabled = true;
+        formSubmit.textContent = 'Submitting...';
+
+        const data = {
+            name: document.getElementById('form-name').value,
+            brand: document.getElementById('form-brand').value,
+            website: document.getElementById('form-website').value,
+            spend: document.getElementById('form-spend').value,
+            challenge: document.getElementById('form-challenge').value,
+            whatsapp: document.getElementById('form-whatsapp').value,
+            timestamp: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })
+        };
+
+        try {
+            await fetch(GOOGLE_SHEET_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
+
+            // Fire Meta Pixel Lead event
+            if (typeof fbq === 'function') {
+                fbq('track', 'Lead');
+            }
+
+            applyForm.style.display = 'none';
+            formSuccess.style.display = 'block';
+        } catch (err) {
+            formSubmit.disabled = false;
+            formSubmit.textContent = 'Submit Application';
+            alert('Something went wrong. Please try again or WhatsApp us directly.');
+        }
+    });
+}
 
 // === CURSOR GLOW ON HERO (desktop only) ===
 const hero = document.querySelector('.hero');
