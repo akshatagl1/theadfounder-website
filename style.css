@@ -928,6 +928,23 @@ img {
     transform: none !important;
 }
 
+/* Error state */
+.form-errors {
+    max-width: 640px;
+    padding: 16px 20px;
+    margin-bottom: 20px;
+    border: 1px solid #6b2b2b;
+    background: #1a0a0a;
+    border-radius: 4px;
+}
+
+.form-errors p {
+    color: #e8a0a0;
+    font-size: 0.88rem;
+    line-height: 1.7;
+    margin: 0;
+}
+
 /* Success state */
 .form-success {
     max-width: 640px;

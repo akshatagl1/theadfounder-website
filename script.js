@@ -187,12 +187,49 @@ const applyForm = document.getElementById('apply-form');
 const formSuccess = document.getElementById('form-success');
 const formSubmit = document.getElementById('form-submit');
 
+// === FORM VALIDATION ===
+function validateForm(data) {
+    const errors = [];
+
+    // Name: at least 2 real characters
+    if (data.name.trim().length < 2) {
+        errors.push('Please enter your full name.');
+    }
+
+    // Brand: at least 2 chars, not all numbers
+    if (data.brand.trim().length < 2 || /^\d+$/.test(data.brand.trim())) {
+        errors.push('Please enter a valid brand name.');
+    }
+
+    // Website: must contain a dot (basic domain check)
+    if (!data.website.trim().includes('.')) {
+        errors.push('Please enter a valid website URL (e.g., yourbrand.com).');
+    }
+
+    // Spend: block non-qualifying tiers
+    if (data.spend === 'Not spending yet' || data.spend === 'Under ₹1L/month') {
+        errors.push('This service is designed for brands spending ₹1L/month or more on Meta ads. If you\'re not there yet, we may not be the right fit right now.');
+    }
+
+    // Challenge: at least 20 characters (a real sentence)
+    if (data.challenge.trim().length < 20) {
+        errors.push('Please describe your challenge in more detail (at least 20 characters).');
+    }
+
+    // WhatsApp: at least 10 digits
+    const digits = data.whatsapp.replace(/\D/g, '');
+    if (digits.length < 10) {
+        errors.push('Please enter a valid 10-digit WhatsApp number.');
+    }
+
+    return errors;
+}
+
+const formErrors = document.getElementById('form-errors');
+
 if (applyForm) {
     applyForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-
-        formSubmit.disabled = true;
-        formSubmit.textContent = 'Submitting...';
 
         const data = {
             name: document.getElementById('form-name').value,
@@ -204,6 +241,19 @@ if (applyForm) {
             timestamp: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })
         };
 
+        // Validate before submitting
+        const errors = validateForm(data);
+        if (errors.length > 0) {
+            formErrors.innerHTML = errors.map(e => '<p>' + e + '</p>').join('');
+            formErrors.style.display = 'block';
+            formErrors.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            return;
+        }
+
+        formErrors.style.display = 'none';
+        formSubmit.disabled = true;
+        formSubmit.textContent = 'Submitting...';
+
         try {
             await fetch(GOOGLE_SHEET_URL, {
                 method: 'POST',
@@ -212,7 +262,7 @@ if (applyForm) {
                 body: JSON.stringify(data)
             });
 
-            // Fire Meta Pixel Lead event
+            // Fire Meta Pixel Lead event — ONLY after validation passes
             if (typeof fbq === 'function') {
                 fbq('track', 'Lead');
             }
