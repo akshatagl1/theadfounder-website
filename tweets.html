@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tweets — The Ad Founder</title>
+    <meta name="description" content="Operator insights on Meta ads, D2C growth, and performance marketing — straight from the trenches.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .tweets-page {
+            min-height: 100vh;
+            padding: 120px 0 100px;
+        }
+
+        .tweets-embed {
+            max-width: 550px;
+            margin-top: 52px;
+        }
+
+        .tweets-embed .twitter-timeline {
+            border: 1px solid var(--black-border) !important;
+        }
+
+        .tweets-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.8rem;
+            color: var(--white-muted);
+            margin-bottom: 32px;
+            transition: color 0.2s ease;
+        }
+
+        .tweets-back:hover {
+            color: var(--white);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-af">AF</span>
+                <span class="logo-text">The Ad Founder</span>
+            </a>
+            <div class="nav-links" id="nav-links">
+                <a href="index.html#founder">Story</a>
+                <a href="index.html#services">Services</a>
+                <a href="index.html#pricing">Pricing</a>
+                <a href="tweets.html" class="active">Tweets</a>
+                <a href="index.html#apply" class="nav-cta">Apply for Audit</a>
+            </div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Tweets Page -->
+    <section class="tweets-page">
+        <div class="container">
+            <a href="index.html" class="tweets-back">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+                Back
+            </a>
+            <p class="section-tag">Operator's Log</p>
+            <h2 class="section-title">Tweets</h2>
+            <div class="tweets-embed">
+                <a class="twitter-timeline"
+                   data-theme="dark"
+                   data-chrome="noheader nofooter noborders transparent"
+                   href="https://x.com/ads_by_founder">Tweets by The Ad Founder</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-inner">
+            <div class="footer-left">
+                <span class="logo-af logo-af-sm">AF</span>
+                <span class="footer-brand">The Ad Founder</span>
+            </div>
+            <div class="footer-right">
+                <a href="mailto:akshatagl1@gmail.com">akshatagl1@gmail.com</a>
+                <span class="footer-divider">&middot;</span>
+                <a href="https://wa.me/919910093404">WhatsApp</a>
+            </div>
+        </div>
+    </footer>
+
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <script>
+        // Nav toggle (mobile)
+        const navToggle = document.getElementById('nav-toggle');
+        const navLinks = document.getElementById('nav-links');
+        if (navToggle) {
+            navToggle.addEventListener('click', () => {
+                navToggle.classList.toggle('active');
+                navLinks.classList.toggle('open');
+            });
+        }
+
+        // Nav scroll effect
+        window.addEventListener('scroll', () => {
+            document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 10);
+        });
+    </script>
+</body>
+</html>
