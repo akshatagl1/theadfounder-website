@@ -4,7 +4,7 @@ const TWEETS = [
   {
     text: "Meta keeps shipping AI touch-ups and text overlays nobody asked for.\n\nWhat is actually needed?\n\nPredicted creative lifecycle.\n\nYou have billions of data points. Tell me this ad has ~7 days before fatigue so I can prep the next one.",
     date: "Jun 22, 2026",
-    image: "tweet-images/creative-lifecycle.png"
+    image: "creative-lifecycle.png"
   },
   {
     text: "I rarely care about CPM.\n\nCheap impressions don't automatically mean better performance. The quality of those impressions matters just as much.\n\nThe metric I care about most is CPC. If your website CTR stays similar, paying less per click is what actually moves the needle.",
