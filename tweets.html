@@ -15,13 +15,140 @@
             padding: 120px 0 100px;
         }
 
-        .tweets-embed {
-            max-width: 550px;
-            margin-top: 52px;
+        .tweets-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 52px;
         }
 
-        .tweets-embed .twitter-timeline {
-            border: 1px solid var(--black-border) !important;
+        .tweets-header-left .section-tag {
+            margin-bottom: 16px;
+        }
+
+        .tweets-header-left .section-title {
+            margin-bottom: 0;
+        }
+
+        .tweets-follow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border: 1px solid rgba(176, 176, 176, 0.4);
+            font-size: 0.82rem;
+            font-weight: 500;
+            color: var(--white);
+            transition: all 0.2s ease;
+        }
+
+        .tweets-follow:hover {
+            background: var(--white);
+            color: var(--black);
+            border-color: var(--white);
+        }
+
+        .tweets-follow svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .tweets-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            max-width: 100%;
+        }
+
+        .tweet-card {
+            padding: 32px 28px;
+            border: 1px solid var(--black-border);
+            background: var(--black-card);
+            transition: border-color 0.3s ease, transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tweet-card:hover {
+            border-color: rgba(176, 176, 176, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .tweet-card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .tweet-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            overflow: hidden;
+            flex-shrink: 0;
+            background: var(--black-light);
+        }
+
+        .tweet-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .tweet-author-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1px;
+        }
+
+        .tweet-author-name {
+            font-family: var(--font-display);
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: var(--white);
+        }
+
+        .tweet-author-handle {
+            font-size: 0.75rem;
+            color: var(--white-muted);
+        }
+
+        .tweet-x-icon {
+            margin-left: auto;
+            color: var(--white-muted);
+            opacity: 0.4;
+        }
+
+        .tweet-body {
+            flex: 1;
+            font-size: 0.9rem;
+            color: var(--silver-light);
+            line-height: 1.75;
+            white-space: pre-line;
+            margin-bottom: 20px;
+        }
+
+        .tweet-image {
+            margin-bottom: 20px;
+            border: 1px solid var(--black-border);
+            overflow: hidden;
+        }
+
+        .tweet-image img {
+            width: 100%;
+            display: block;
+        }
+
+        .tweet-date {
+            font-size: 0.72rem;
+            color: var(--white-muted);
+            opacity: 0.6;
+            padding-top: 16px;
+            border-top: 1px solid var(--black-border);
+            margin-top: auto;
         }
 
         .tweets-back {
@@ -36,6 +163,21 @@
 
         .tweets-back:hover {
             color: var(--white);
+        }
+
+        @media (max-width: 768px) {
+            .tweets-page {
+                padding: 120px 0 72px;
+            }
+
+            .tweets-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tweets-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
         }
     </style>
 </head>
@@ -52,7 +194,7 @@
                 <a href="index.html#founder">Story</a>
                 <a href="index.html#services">Services</a>
                 <a href="index.html#pricing">Pricing</a>
-                <a href="tweets.html" class="active">Tweets</a>
+                <a href="tweets.html">Tweets</a>
                 <a href="index.html#apply" class="nav-cta">Apply for Audit</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
@@ -70,14 +212,19 @@
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
                 Back
             </a>
-            <p class="section-tag">Operator's Log</p>
-            <h2 class="section-title">Tweets</h2>
-            <div class="tweets-embed">
-                <a class="twitter-timeline"
-                   data-theme="dark"
-                   data-chrome="noheader nofooter noborders transparent"
-                   href="https://twitter.com/ads_by_founder">Tweets by The Ad Founder</a>
+
+            <div class="tweets-header">
+                <div class="tweets-header-left">
+                    <p class="section-tag">Operator's Log</p>
+                    <h2 class="section-title">Tweets</h2>
+                </div>
+                <a href="https://x.com/ads_by_founder" target="_blank" class="tweets-follow">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    Follow @ads_by_founder
+                </a>
             </div>
+
+            <div class="tweets-grid" id="tweets-grid"></div>
         </div>
     </section>
 
@@ -96,8 +243,40 @@
         </div>
     </footer>
 
-    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <script src="tweets-data.js"></script>
     <script>
+        // Render tweets
+        const grid = document.getElementById('tweets-grid');
+
+        TWEETS.forEach(tweet => {
+            const card = document.createElement('div');
+            card.className = 'tweet-card';
+
+            const imageHTML = tweet.image
+                ? `<div class="tweet-image"><img src="${tweet.image}" alt="Tweet image" loading="lazy"></div>`
+                : '';
+
+            card.innerHTML = `
+                <div class="tweet-card-header">
+                    <div class="tweet-avatar">
+                        <img src="founder.jpg" alt="Akshat Agarwal">
+                    </div>
+                    <div class="tweet-author-info">
+                        <span class="tweet-author-name">Akshat Agarwal</span>
+                        <span class="tweet-author-handle">@ads_by_founder</span>
+                    </div>
+                    <div class="tweet-x-icon">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    </div>
+                </div>
+                <div class="tweet-body">${tweet.text}</div>
+                ${imageHTML}
+                <div class="tweet-date">${tweet.date}</div>
+            `;
+
+            grid.appendChild(card);
+        });
+
         // Nav toggle (mobile)
         const navToggle = document.getElementById('nav-toggle');
         const navLinks = document.getElementById('nav-links');
