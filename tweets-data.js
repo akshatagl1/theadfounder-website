@@ -2,6 +2,11 @@
 // For tweets with images, put the image in /tweet-images/ and set image field.
 const TWEETS = [
   {
+    text: "Personal take – all in 1 doesn't work.\n\nAny agency/freelancer promising to handle content, social media, branding, performance ads (meta + google) etc usually does 1 or 2 well and a subpar job in others.\n\nHire specialists when budget allows. Till then do yourself",
+    date: "Jun 30, 2026",
+    image: null
+  },
+  {
     text: "Meta keeps shipping AI touch-ups and text overlays nobody asked for.\n\nWhat is actually needed?\n\nPredicted creative lifecycle.\n\nYou have billions of data points. Tell me this ad has ~7 days before fatigue so I can prep the next one.",
     date: "Jun 22, 2026",
     image: "creative-lifecycle.png"
